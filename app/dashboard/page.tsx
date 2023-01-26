@@ -4,7 +4,7 @@ import { Steps } from "antd";
 
 export default function Dashboard() {
   return (
-    <div className="flex flex-grow flex-col p-5">
+    <div className="flex flex-grow flex-col p-5 mt-5">
       <div className="p-5 rounded-2xl bg-primary-low">
         <Steps
           size="small"

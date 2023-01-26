@@ -16,53 +16,61 @@ export default function RootLayout({
         <Avatar className="mx-auto mb-10" src="/boss.png" size={100} />
         <p className="text-sm mb-4">EMPLOYEE DETAILS</p>
         <Form layout="vertical">
-          <Form.Item name="firstName">
+          <Form.Item>
             <label className="text-xs">First name</label>
-            <Input
-              className="bg-secondary-low p-2"
-              bordered={false}
-              placeholder="First name"
-              value="Wale"
-            />
+            <Form.Item name="firstName" noStyle>
+              <Input
+                className="bg-secondary-low p-2"
+                bordered={false}
+                placeholder="First name"
+              />
+            </Form.Item>
           </Form.Item>
-          <Form.Item name="lastName">
+          <Form.Item>
             <label className="text-xs">Last name</label>
-            <Input
-              className="bg-secondary-low p-2"
-              bordered={false}
-              placeholder="Last name"
-              value="Ajisebutu"
-            />
+            <Form.Item name="lastName" noStyle>
+              <Input
+                className="bg-secondary-low p-2"
+                bordered={false}
+                placeholder="Last name"
+              />
+            </Form.Item>
           </Form.Item>
-          <Form.Item name="email">
+          <Form.Item>
             <label className="text-xs">Email Address</label>
-            <Input
-              className="bg-secondary-low p-2"
-              bordered={false}
-              type="email"
-              placeholder="Email"
-              value="wale.ajisebutu@21ctl.com"
-              suffix={<CopyIcon className="opacity-70 cursor-pointer" />}
-            />
+            <Form.Item name="email" noStyle>
+              <Input
+                className="bg-secondary-low p-2"
+                bordered={false}
+                type="email"
+                placeholder="Email"
+                value="wale.ajisebutu@21ctl.com"
+                suffix={<CopyIcon className="opacity-70 cursor-pointer" />}
+              />
+            </Form.Item>
           </Form.Item>
-          <Form.Item name="phoneNumber">
+          <Form.Item>
             <label className="text-xs">Phone Number</label>
-            <Input
-              className="bg-secondary-low p-2"
-              bordered={false}
-              placeholder="Phone number"
-              value="+234 8076367487"
-              suffix={<CopyIcon className="opacity-70 cursor-pointer" />}
-            />
+            <Form.Item name="phoneNumber" noStyle>
+              <Input
+                className="bg-secondary-low p-2"
+                bordered={false}
+                placeholder="Phone number"
+                value="+234 8076367487"
+                suffix={<CopyIcon className="opacity-70 cursor-pointer" />}
+              />
+            </Form.Item>
           </Form.Item>
-          <Form.Item name="jobTitle">
+          <Form.Item>
             <label className="text-xs">Job Title</label>
-            <Input
-              className="bg-secondary-low p-2"
-              bordered={false}
-              placeholder="Job title"
-              value="Vice Chairman/CEO"
-            />
+            <Form.Item name="jobTitle" noStyle>
+              <Input
+                className="bg-secondary-low p-2"
+                bordered={false}
+                placeholder="Job title"
+                value="Vice Chairman/CEO"
+              />
+            </Form.Item>
           </Form.Item>
         </Form>
       </div>
@@ -76,9 +84,11 @@ export default function RootLayout({
             />
           </div>
           <div className="flex items-center">
-            <div className="text-secondary-high">
-              <NotificationIcon />
-            </div>
+            <Button
+              icon={<NotificationIcon />}
+              className="text-secondary-high border-none"
+            />
+
             <div className="h-6 border-r ml-2 border-primary-high"></div>
             <div className="rounded-full border-primary-high">
               <Avatar className="m-2" src="/boss.png" size={36} />
