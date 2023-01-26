@@ -1,3 +1,36 @@
+"use client";
+
+import { Steps } from "antd";
+
 export default function Dashboard() {
-  return <>HRS coming soon...</>;
+  return (
+    <div className="flex flex-grow flex-col p-5">
+      <div className="p-5 rounded-2xl bg-primary-low">
+        <Steps
+          size="small"
+          current={0}
+          items={[
+            {
+              title: "Recruitment",
+            },
+            {
+              title: "Touring",
+            },
+            {
+              title: "Contract Signing",
+            },
+            {
+              title: "Engagement",
+            },
+            {
+              title: "Orientation",
+            },
+            {
+              title: "Resumption",
+            },
+          ]}
+        />
+      </div>
+    </div>
+  );
 }
