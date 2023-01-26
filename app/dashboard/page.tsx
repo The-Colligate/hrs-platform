@@ -8,6 +8,7 @@ export default function Dashboard() {
       <div className="p-5 rounded-2xl bg-primary-low">
         <Steps
           size="small"
+          labelPlacement="vertical"
           current={0}
           items={[
             {
