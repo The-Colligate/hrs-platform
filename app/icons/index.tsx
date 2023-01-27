@@ -8,3 +8,4 @@ export * from "./notification";
 export * from "./search";
 export * from "./volume-high";
 export * from "./filter";
+export * from "./compose";

@@ -1,6 +1,6 @@
 "use client";
 
-import { fileToIcon } from "@/app/utils";
+import { fileToIcon } from "@/utils";
 import { FilterIcon, SearchIcon } from "@/icons";
 import { Button, Input } from "antd";
 import Image from "next/image";
