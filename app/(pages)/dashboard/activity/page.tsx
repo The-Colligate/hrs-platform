@@ -16,7 +16,7 @@ export default function Dashboard() {
       description: `<p>There would be an emergency meeting today at the digital Hub
                   glass house today. The meeting would be held to discuss the
                   future of the company. Do well to be present</p>`,
-      priority: "High",
+      priority: "Medium",
       time: new Date(),
       createdBy: "HR",
       attachments: [
@@ -28,6 +28,20 @@ export default function Dashboard() {
     },
     {
       id: 2,
+      title: "Engineering Standup",
+      description: `<p>This is to inform you that the engineering standup has been moved from glasshouse to the training center and shall hold 30 mins earlier (7:30am)</p>`,
+      priority: "High",
+      time: new Date(),
+      createdBy: "Dr Okoro",
+      attachments: [
+        {
+          id: 1,
+          name: "Meeting Agenda",
+        },
+      ],
+    },
+    {
+      id: 3,
       title: "HR-related Updates",
       description: `
         <div>
@@ -55,7 +69,7 @@ export default function Dashboard() {
     },
   ];
   return (
-    <div className="max-w-4xl h-full flex flex-col flex-grow overflow-auto custom_scrollbar p-5">
+    <div className="max-w-4xl h-full flex flex-col flex-grow overflow-auto custom_scrollbar p-5 pt-0">
       <p className="mb-2 font-semibold">Today</p>
       {announcements.map((announcement) => {
         return (
