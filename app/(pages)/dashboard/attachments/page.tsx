@@ -44,7 +44,7 @@ export default function Attachments() {
           return (
             <div
               key={file.id}
-              className={`${bgColor} ${textColor} rounded-lg p-6 text-center hover:shadow-lg transition-all cursor-pointer`}
+              className={`${bgColor} ${textColor} rounded-lg p-6 text-center shadow_hover cursor-pointer`}
             >
               <Image
                 alt={icon}

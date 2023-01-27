@@ -68,7 +68,7 @@ export default function Dashboard() {
               </p>
             }
             // extra={<a href="#">More</a>}
-            className="w-full mb-3 hover:shadow-lg"
+            className="w-full mb-3 shadow_hover"
           >
             <Meta
               avatar={<Avatar src="/boss.png" />}
