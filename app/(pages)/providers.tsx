@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, ConfigProvider } from "antd";
+import { ConfigProvider } from "antd";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   type ThemeData = {

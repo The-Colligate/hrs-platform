@@ -7,13 +7,17 @@ import {
   MessagesIcon,
   ScriptTextPlayIcon,
 } from "@/icons";
+import "@/styles/globals.scss";
 import { Button } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import "./styles/globals.scss";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const path = usePathname();
 
   const sidebarLinks = [
@@ -64,10 +68,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
             <div className="w-full max-h-full flex flex-col space-y-5 flex-grow">
               {sidebarLinks.map((link) => (
-                <Link key={link.name} href={link.href}>
+                <Link
+                  key={link.name}
+                  href={link.href}
+                >
                   <p
                     className={`flex p-3 rounded-xl text-secondary-low hover:bg-secondary-low hover:bg-opacity-30 ${
-                      path?.startsWith(link.href) ? "bg-white text-primary-high" : ""
+                      path?.startsWith(link.href)
+                        ? "bg-white text-primary-high"
+                        : ""
                     }`}
                   >
                     <span className="mr-4">{link.icon}</span>
@@ -79,12 +88,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="flex flex-col items-center justify-self-end space-y-3">
               <p className="font-semibold">Hello, Wale</p>
               <p>Do you need any help?</p>
-              <Button className="bg-white" size="large">
+              <Button
+                className="bg-white"
+                size="large"
+              >
                 Contact us
               </Button>
             </div>
           </div>
-          <div className="col-span-10 h-screen overflow-hidden bg-secondary-low">{children}</div>
+          <div className="col-span-10 h-screen overflow-hidden bg-secondary-low">
+            {children}
+          </div>
         </div>
       </body>
     </html>
