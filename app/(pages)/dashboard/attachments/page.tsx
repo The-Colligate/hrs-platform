@@ -1,7 +1,7 @@
 "use client";
 
-import { fileToIcon } from "@/utils";
 import { FilterIcon, SearchIcon } from "@/icons";
+import { fileToIcon } from "@/utils";
 import { Button, Input } from "antd";
 import Image from "next/image";
 
@@ -45,15 +45,10 @@ export default function Attachments() {
             <div
               key={file.id}
               className={`${bgColor} ${textColor} rounded-lg p-6 text-center shadow_hover cursor-pointer`}
+              title={file.name}
             >
-              <Image
-                alt={icon}
-                src={icon}
-                width={50}
-                height={50}
-                className="mx-auto mb-8"
-              />
-              <p className="font-semibold mb-2">{file.name}</p>
+              <Image alt={icon} src={icon} width={50} height="0" className="mx-auto mb-8 h-auto" />
+              <p className="font-semibold mb-2 max-w-full truncate">{file.name}</p>
               <p>{file.size}</p>
             </div>
           );
