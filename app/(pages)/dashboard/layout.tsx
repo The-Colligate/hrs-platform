@@ -1,9 +1,9 @@
 "use client";
 
+import { CopyIcon, NotificationIcon, SearchIcon } from "@/icons";
 import { Avatar, Button, Form, Input, Steps } from "antd";
-import { CopyIcon, NotificationIcon, SearchIcon } from "@/app/icons";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function RootLayout({
   children,
@@ -31,12 +31,19 @@ export default function RootLayout({
     <div className="w-full h-screen grid grid-cols-10 overflow-hidden">
       <div className="h-screen col-span-2 flex flex-col p-5 bg-white pt-10 shadow-lg">
         <p className="text-center text-primary-high mb-10">Welcome, Wale</p>
-        <Avatar className="mx-auto mb-10" src="/boss.png" size={100} />
+        <Avatar
+          className="mx-auto mb-10"
+          src="/boss.png"
+          size={100}
+        />
         <p className="text-sm mb-4">EMPLOYEE DETAILS</p>
         <Form layout="vertical">
           <Form.Item>
             <label className="text-xs">First name</label>
-            <Form.Item name="firstName" noStyle>
+            <Form.Item
+              name="firstName"
+              noStyle
+            >
               <Input
                 className="bg-secondary-low p-2"
                 bordered={false}
@@ -46,7 +53,10 @@ export default function RootLayout({
           </Form.Item>
           <Form.Item>
             <label className="text-xs">Last name</label>
-            <Form.Item name="lastName" noStyle>
+            <Form.Item
+              name="lastName"
+              noStyle
+            >
               <Input
                 className="bg-secondary-low p-2"
                 bordered={false}
@@ -56,7 +66,10 @@ export default function RootLayout({
           </Form.Item>
           <Form.Item>
             <label className="text-xs">Email Address</label>
-            <Form.Item name="email" noStyle>
+            <Form.Item
+              name="email"
+              noStyle
+            >
               <Input
                 className="bg-secondary-low p-2"
                 bordered={false}
@@ -69,7 +82,10 @@ export default function RootLayout({
           </Form.Item>
           <Form.Item>
             <label className="text-xs">Phone Number</label>
-            <Form.Item name="phoneNumber" noStyle>
+            <Form.Item
+              name="phoneNumber"
+              noStyle
+            >
               <Input
                 className="bg-secondary-low p-2"
                 bordered={false}
@@ -81,7 +97,10 @@ export default function RootLayout({
           </Form.Item>
           <Form.Item>
             <label className="text-xs">Job Title</label>
-            <Form.Item name="jobTitle" noStyle>
+            <Form.Item
+              name="jobTitle"
+              noStyle
+            >
               <Input
                 className="bg-secondary-low p-2"
                 bordered={false}
@@ -109,7 +128,11 @@ export default function RootLayout({
 
             <div className="h-6 border-r ml-2 border-primary-high"></div>
             <div className="rounded-full border-primary-high">
-              <Avatar className="m-2" src="/boss.png" size={36} />
+              <Avatar
+                className="m-2"
+                src="/boss.png"
+                size={36}
+              />
             </div>
           </div>
         </div>
@@ -118,7 +141,7 @@ export default function RootLayout({
             <Steps
               size="small"
               labelPlacement="vertical"
-              current={0}
+              current={2}
               items={[
                 {
                   title: "Recruitment",
@@ -146,7 +169,10 @@ export default function RootLayout({
               const active = path?.startsWith(tab.href);
 
               return (
-                <Link key={tab.name} href={tab.href}>
+                <Link
+                  key={tab.name}
+                  href={tab.href}
+                >
                   <Button
                     size="large"
                     type={active ? "default" : "text"}
