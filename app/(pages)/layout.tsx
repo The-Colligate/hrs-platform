@@ -11,7 +11,7 @@ import { Button } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import "./globals.scss";
+import "./styles/globals.scss";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const path = usePathname();
