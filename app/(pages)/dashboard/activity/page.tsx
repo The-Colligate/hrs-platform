@@ -1,10 +1,11 @@
 "use client";
 
-import { resolvePriorityColor } from "@/utils";
+import { fileToIcon, resolvePriorityColor } from "@/utils";
 import { VolumeHighIcon } from "@/icons";
 import { PriorityStatus } from "@/types";
 import { Avatar, Card } from "antd";
 import { format } from "date-fns";
+import Image from "next/image";
 
 const { Meta } = Card;
 
@@ -22,7 +23,8 @@ export default function Dashboard() {
       attachments: [
         {
           id: 1,
-          name: "Meeting Agenda",
+          name: "Future of the company.pdf",
+          size: "50kb",
         },
       ],
     },
@@ -33,12 +35,6 @@ export default function Dashboard() {
       priority: "High",
       time: new Date(),
       createdBy: "Dr Okoro",
-      attachments: [
-        {
-          id: 1,
-          name: "Meeting Agenda",
-        },
-      ],
     },
     {
       id: 3,
@@ -114,6 +110,31 @@ export default function Dashboard() {
                       __html: announcement.description,
                     }}
                   ></div>
+                  <div className="flex flex-wrap gap-5">
+                    {announcement.attachments &&
+                      announcement.attachments.map((attachment) => {
+                        const { icon } = fileToIcon(attachment.name);
+                        return (
+                          <div
+                            className="flex items-center rounded-lg border divide-x cursor-pointer"
+                            key={attachment.id}
+                          >
+                            <div className="p-3">
+                              <Image
+                                alt={icon}
+                                src={icon}
+                                width={30}
+                                height={30}
+                              />
+                            </div>
+                            <div className="p-3">
+                              <p className="font-semibold">{attachment.name}</p>
+                              <p className="text-sm">{attachment.size}</p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                  </div>
                 </div>
               }
             />
