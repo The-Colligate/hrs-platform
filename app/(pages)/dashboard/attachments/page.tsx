@@ -1,70 +1,61 @@
 "use client";
 
-import { Button, Steps } from "antd";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { fileToIcon } from "@/app/utils";
+import { FilterIcon, SearchIcon } from "@/icons";
+import { Button, Input } from "antd";
+import Image from "next/image";
 
 export default function Attachments() {
-  const path = usePathname();
-
-  const buttonTabs = [
+  const files = [
     {
-      name: "Activity",
-      href: "/dashboard",
+      id: 1,
+      name: "Report.xlsx",
+      size: "50kb",
     },
     {
-      name: "Attachments",
-      href: "/dashboard/attachments",
+      id: 2,
+      name: "Presentation.pptx",
+      size: "2.5mb",
     },
     {
-      name: "Requests",
-      href: "/dashboard/requests",
+      id: 3,
+      name: "Resume.docx",
+      size: "120kb",
+    },
+    {
+      id: 4,
+      name: "Contract Letter.pdf",
+      size: "200kb",
     },
   ];
-
   return (
-    <div className="flex flex-grow flex-col p-5 mt-5">
-      <div className="p-5 rounded-2xl bg-primary-low">
-        <Steps
-          size="small"
-          labelPlacement="vertical"
-          current={0}
-          items={[
-            {
-              title: "Recruitment",
-            },
-            {
-              title: "Touring",
-            },
-            {
-              title: "Contract Signing",
-            },
-            {
-              title: "Engagement",
-            },
-            {
-              title: "Orientation",
-            },
-            {
-              title: "Resumption",
-            },
-          ]}
+    <div className="w-full h-full flex flex-col flex-grow overflow-auto custom_scrollbar p-5">
+      <div className="flex items-center space-x-5 mb-8">
+        <Input
+          placeholder="Search attachments"
+          className="rounded-full border-none w-full px-4 py-3"
+          prefix={<SearchIcon className="text-secondary-high" />}
         />
+        <Button icon={<FilterIcon className="ml-0.5" />} type="text" />
       </div>
-      <div className="flex items-center bg-white w-min rounded-lg mt-5">
-        {buttonTabs.map((tab) => {
-          const active = path?.startsWith(tab.href);
-
+      <div className="grid grid-cols-4 gap-10">
+        {files.map((file) => {
+          const { icon, bgColor, textColor } = fileToIcon(file.name);
           return (
-            <Link key={tab.name} href={tab.href}>
-              <Button
-                size="large"
-                type={active ? "default" : "text"}
-                className={`${active ? "bg-active text-white shadow" : ""}`}
-              >
-                {tab.name}
-              </Button>
-            </Link>
+            <div
+              key={file.id}
+              className={`${bgColor} ${textColor} rounded-lg p-6 text-center hover:shadow-lg transition-all cursor-pointer`}
+            >
+              <Image
+                alt={icon}
+                src={icon}
+                width={50}
+                height={50}
+                className="mx-auto mb-8"
+              />
+              <p className="font-semibold mb-2">{file.name}</p>
+              <p>{file.size}</p>
+            </div>
           );
         })}
       </div>

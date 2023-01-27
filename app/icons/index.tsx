@@ -7,3 +7,4 @@ export * from "./copy";
 export * from "./notification";
 export * from "./search";
 export * from "./volume-high";
+export * from "./filter";
