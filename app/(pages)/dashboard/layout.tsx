@@ -150,7 +150,11 @@ export default function RootLayout({
                   <Button
                     size="large"
                     type={active ? "default" : "text"}
-                    className={`${active ? "bg-active text-white shadow" : ""}`}
+                    className={`${
+                      active
+                        ? "bg-active text-white shadow hover:!text-white"
+                        : "hover:text-black"
+                    }`}
                   >
                     {tab.name}
                   </Button>
