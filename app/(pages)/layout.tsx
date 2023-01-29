@@ -2,11 +2,12 @@
 
 import {
   CalendarIcon,
+  ClipboardTaskFilledIcon,
   DashboardIcon,
-  DocumentIcon,
+  LeaveIcon,
   MessagesIcon,
+  NairaCashIcon,
   NotificationIcon,
-  ScriptTextPlayIcon,
   SearchIcon,
 } from "@/icons";
 import "@/styles/globals.scss";
@@ -30,23 +31,28 @@ export default function RootLayout({
     },
     {
       name: "Attendance",
-      icon: <DocumentIcon />,
+      icon: <ClipboardTaskFilledIcon />,
       href: "/attendance",
+    },
+    {
+      name: "Calendar",
+      icon: <CalendarIcon />,
+      href: "/calendar",
+    },
+    {
+      name: "Payroll",
+      icon: <NairaCashIcon />,
+      href: "/payroll",
+    },
+    {
+      name: "Leave",
+      icon: <LeaveIcon />,
+      href: "/leave",
     },
     {
       name: "Messages",
       icon: <MessagesIcon />,
       href: "/messages",
-    },
-    {
-      name: "Leave",
-      icon: <CalendarIcon />,
-      href: "/leave",
-    },
-    {
-      name: "Payroll",
-      icon: <ScriptTextPlayIcon />,
-      href: "/payroll",
     },
   ];
 
