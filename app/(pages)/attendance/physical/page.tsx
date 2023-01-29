@@ -1,18 +1,9 @@
 "use client";
 
-import { ColorIndicator } from "@/components/common";
+import { ColorIndicator, LeaveProgress } from "@/components/common";
 import { ChevronDownIcon, HeartIcon } from "@/icons";
 import { statusToColor } from "@/utils";
-import {
-  Button,
-  Card,
-  Checkbox,
-  DatePicker,
-  Popover,
-  Progress,
-  Table,
-  Tag,
-} from "antd";
+import { Button, Card, Checkbox, DatePicker, Popover, Table, Tag } from "antd";
 import { format, subDays, subHours } from "date-fns";
 import Link from "next/link";
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
@@ -124,22 +115,11 @@ export default function Physical() {
             Request Leave
           </Button>
         </div>
-        <div className="flex items-center gap-5 max-w-lg  mx-auto mt-5">
-          <div className="text-center">
-            <p className="text-4xl">4</p>
-            <p className="text-secondary-high">Used</p>
-          </div>
-          <Progress
-            percent={40}
-            status="active"
-            showInfo={false}
-            strokeColor="#283E55"
-          />
-          <div className="text-center">
-            <p className="text-4xl">6</p>
-            <p className="text-secondary-high">Left</p>
-          </div>
-        </div>
+        <LeaveProgress
+          used={4}
+          total={6}
+          color="#283E55"
+        />
         <Table
           dataSource={leaveDataSource}
           columns={leaveColumns}
