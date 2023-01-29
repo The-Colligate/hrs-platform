@@ -52,3 +52,30 @@ export const fileToIcon = (file: string) => {
       };
   }
 };
+
+export const statusToColor = (status: string) => {
+  switch (status) {
+    case "Pending":
+      return {
+        bgColor: "bg-status-pending-bg",
+        textColor: "text-status-pending",
+      };
+    case "Late":
+    case "Declined":
+      return {
+        bgColor: "bg-status-declined-bg",
+        textColor: "text-status-declined",
+      };
+    case "Early":
+    case "Approved":
+      return {
+        bgColor: "bg-status-approved-bg",
+        textColor: "text-status-approved",
+      };
+    default:
+      return {
+        bgColor: "bg-secondary-low",
+        textColor: "text-secondary-high",
+      };
+  }
+};

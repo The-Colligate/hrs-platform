@@ -1,14 +1,14 @@
 "use client";
 
-import { resolvePriorityColor } from "@/utils";
 import { ComposeIcon } from "@/icons";
+import { PriorityStatus } from "@/types";
+import { resolvePriorityColor } from "@/utils";
 import { Avatar, Button, Card } from "antd";
 import { format } from "date-fns";
-import { PriorityStatus } from "@/types";
 
 const { Meta } = Card;
 
-export default function Attachments() {
+export default function Requests() {
   const requests = [
     {
       id: 1,
@@ -36,7 +36,10 @@ export default function Attachments() {
   return (
     <div className="w-full h-full flex flex-col flex-grow overflow-auto custom_scrollbar p-5 pt-0">
       <div className="flex justify-end mb-5">
-        <Button className="flex bg-white text-primary-high" size="large">
+        <Button
+          className="flex bg-white text-primary-high"
+          size="large"
+        >
           Compose <ComposeIcon className="ml-2" />
         </Button>
       </div>
@@ -51,7 +54,10 @@ export default function Attachments() {
             <Meta
               title={
                 <div className="flex items-center">
-                  <Avatar src="/boss.png" className="mr-4" />
+                  <Avatar
+                    src="/boss.png"
+                    className="mr-4"
+                  />
                   <div>
                     <p>{request.title}</p>
                     <p className="text-xs font-light">
@@ -61,7 +67,7 @@ export default function Attachments() {
                   <div className="flex items-center self-start ml-4">
                     <div
                       className={`${resolvePriorityColor(
-                        request.priority as PriorityStatus
+                        request.priority as PriorityStatus,
                       )} rounded w-4 h-4 mr-2`}
                     />
                     <p className="text-sm font-light">{request.priority}</p>

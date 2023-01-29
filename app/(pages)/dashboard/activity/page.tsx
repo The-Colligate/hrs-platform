@@ -9,7 +9,7 @@ import Image from "next/image";
 
 const { Meta } = Card;
 
-export default function Dashboard() {
+export default function Activity() {
   const announcements = [
     {
       id: 1,
@@ -73,8 +73,8 @@ export default function Dashboard() {
             key={announcement.id}
             title={
               <p className="flex">
-                <VolumeHighIcon className="text-primary-high mr-2" /> Broadcast Created by{" "}
-                {announcement.createdBy}
+                <VolumeHighIcon className="text-primary-high mr-2" /> Broadcast
+                Created by {announcement.createdBy}
               </p>
             }
             // extra={<a href="#">More</a>}
@@ -86,7 +86,9 @@ export default function Dashboard() {
                 <div className="flex justify-between items-start">
                   <div>
                     <p>{announcement.title}</p>
-                    <p className="text-xs font-light">{format(announcement.time, "hh:mm aa")}</p>
+                    <p className="text-xs font-light">
+                      {format(announcement.time, "hh:mm aa")}
+                    </p>
                   </div>
                   <div className="flex items-center">
                     <div
@@ -94,7 +96,9 @@ export default function Dashboard() {
                         announcement.priority as PriorityStatus,
                       )} rounded w-4 h-4 mr-2`}
                     />
-                    <p className="text-sm font-light">{announcement.priority}</p>
+                    <p className="text-sm font-light">
+                      {announcement.priority}
+                    </p>
                   </div>
                 </div>
               }
@@ -116,7 +120,12 @@ export default function Dashboard() {
                             key={attachment.id}
                           >
                             <div className="p-3">
-                              <Image alt={icon} src={icon} width={30} height={30} />
+                              <Image
+                                alt={icon}
+                                src={icon}
+                                width={30}
+                                height={30}
+                              />
                             </div>
                             <div className="p-3">
                               <p className="font-semibold">{attachment.name}</p>
