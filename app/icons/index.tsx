@@ -1,6 +1,7 @@
 export * from "./calendar";
 export * from "./chevron-down";
 export * from "./chevron-left";
+export * from "./chevron-right";
 export * from "./clipboard-task-filled";
 export * from "./compose";
 export * from "./copy";
