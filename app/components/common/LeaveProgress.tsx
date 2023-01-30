@@ -4,11 +4,13 @@ export const LeaveProgress = (props: {
   used: number;
   total: number;
   color: string;
+  active?: boolean;
+  className?: string;
 }) => {
-  const { used, total, color } = props;
+  const { used, total, color, className, active } = props;
   return (
     <div
-      className="flex items-center gap-5 max-w-lg mx-auto mt-5"
+      className={`flex items-center gap-5 max-w-lg mx-auto ${className}`}
       style={{ color }}
     >
       <div className="text-center">
@@ -17,7 +19,7 @@ export const LeaveProgress = (props: {
       </div>
       <Progress
         percent={(used / total) * 100}
-        status="active"
+        status={active ? "active" : "normal"}
         showInfo={false}
         strokeColor={color}
       />

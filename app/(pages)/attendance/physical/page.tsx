@@ -119,6 +119,7 @@ export default function Physical() {
           used={4}
           total={6}
           color="#283E55"
+          className="mt-5"
         />
         <Table
           dataSource={leaveDataSource}
