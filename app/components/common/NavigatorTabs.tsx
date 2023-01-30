@@ -41,7 +41,7 @@ export const NavigatorTabs = (props: NavigatorTabsProps) => {
       {isNested && (
         <Button
           className="bg-white mr-2 flex items-center"
-          icon={<ChevronLeftIcon />}
+          icon={<ChevronLeftIcon className="ml-1" />}
           size="large"
           onClick={() => router.back()}
         />
