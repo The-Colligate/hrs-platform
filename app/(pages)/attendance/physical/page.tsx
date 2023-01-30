@@ -33,13 +33,13 @@ const data = [
 
 export default function Physical() {
   return (
-    <div className="w-full h-full grid grid-cols-11 grid-rows-2 gap-5 flex-grow p-5">
+    <div className="w-full h-full grid grid-cols-11 gap-5 flex-grow p-5 overflow-auto custom_scrollbar">
       <Card
         className="col-span-6 shadow"
         bodyStyle={{
           display: "flex",
           flexDirection: "column",
-          height: "100%",
+          // height: "100%",
           width: "100%",
         }}
       >
@@ -54,7 +54,7 @@ export default function Physical() {
           <div className="col-span-3">
             <ResponsiveContainer
               aspect={1}
-              height="100%"
+              height={300}
             >
               <PieChart
               // onMouseEnter={this.onPieEnter}
@@ -62,7 +62,7 @@ export default function Physical() {
                 <Pie
                   data={data}
                   cx={"35%"}
-                  cy={180}
+                  cy={150}
                   innerRadius={90}
                   outerRadius={130}
                   fill="#8884d8"

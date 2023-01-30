@@ -52,7 +52,7 @@ const data = [
 
 export default function Leave() {
   return (
-    <div className="w-full h-full flex flex-col flex-grow p-5">
+    <div className="w-full h-full flex flex-col flex-grow p-5 overflow-auto custom_scrollbar">
       <div className="flex justify-between mb-5">
         <p className="text-2xl">Available Leave</p>
         <Link
