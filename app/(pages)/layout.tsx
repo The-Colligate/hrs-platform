@@ -37,12 +37,12 @@ export default function RootLayout({
     {
       name: "Calendar",
       icon: <CalendarIcon />,
-      href: "/calendar",
+      href: "#",
     },
     {
       name: "Payroll",
       icon: <NairaCashIcon />,
-      href: "/payroll",
+      href: "#",
     },
     {
       name: "Leave",
@@ -52,7 +52,7 @@ export default function RootLayout({
     {
       name: "Messages",
       icon: <MessagesIcon />,
-      href: "/messages",
+      href: "#",
     },
   ];
 

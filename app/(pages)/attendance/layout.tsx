@@ -1,15 +1,12 @@
 "use client";
 
 import { NavigatorTabs } from "@/components/common";
-import { usePathname } from "next/navigation";
 
 export default function AttendanceLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const path = usePathname();
-
   const buttonTabs = [
     {
       name: "Physical",
@@ -17,7 +14,7 @@ export default function AttendanceLayout({
     },
     {
       name: "Online",
-      href: "/attendance/online",
+      href: "/attendance/physical#",
     },
   ];
 
