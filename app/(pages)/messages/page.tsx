@@ -122,7 +122,7 @@ export default function Messages() {
           </Collapse>
         </div>
       </div>
-      <div className="col-span-8 h-full flex flex-col flex-grow overflow-auto custom_scrollbar p-5 pt-0">
+      <div className="col-span-8 h-full flex flex-col flex-grow overflow-auto custom_scrollbar px-3 pt-0">
         <div className="flex justify-between items-center p-4 rounded-lg bg-white">
           <div className="flex">
             <Avatar
@@ -169,7 +169,7 @@ export default function Messages() {
             />
           ))}
         </div>
-        <div className="p-3 flex items-center gap-3">
+        <div className="py-3 flex items-center gap-3">
           <Input
             placeholder="Type your message"
             className="rounded-full p-2"
