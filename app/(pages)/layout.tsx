@@ -52,7 +52,7 @@ export default function RootLayout({
     {
       name: "Messages",
       icon: <MessagesIcon />,
-      href: "#",
+      href: "/messages",
     },
   ];
 
@@ -60,12 +60,14 @@ export default function RootLayout({
     borderRadius: number;
     colorPrimary: string;
     colorSecondary: string;
+    colorLink: string;
   };
 
   const customTheme: ThemeData = {
     borderRadius: 8,
     colorPrimary: "#283E55",
     colorSecondary: "#E0E5EC",
+    colorLink: "#283E55",
   };
 
   return (
