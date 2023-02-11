@@ -19,14 +19,14 @@ export default function AttendanceLayout({
   ];
 
   return (
-    <div className="w-full h-full col-span-10 flex flex-col overflow-hidden">
-      <div className="p-5 pt-0">
+    <div className="w-full h-full col-span-10 flex flex-col overflow-hidden largeTablet:overflow-y-visible">
+      <div className="p-5 pt-0 largeTablet:p-3">
         <NavigatorTabs
-          className="mt-10"
+          className="mt-10 largeTablet:mt-0"
           buttonTabs={buttonTabs}
         />
       </div>
-      <div className="col-span-10 flex flex-col flex-grow overflow-hidden">
+      <div className="col-span-10 flex flex-col flex-grow overflow-hidden largeTablet:overflow-y-visible">
         {children}
       </div>
     </div>

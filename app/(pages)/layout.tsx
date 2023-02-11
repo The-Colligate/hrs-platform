@@ -32,12 +32,12 @@ export default function RootLayout({
     {
       name: "Dashboard",
       icon: <DashboardIcon />,
-      href: "/dashboard",
+      href: "/dashboard/activity",
     },
     {
       name: "Attendance",
       icon: <ClipboardTaskFilledIcon />,
-      href: "/attendance",
+      href: "/attendance/physical",
     },
     {
       name: "Calendar",
@@ -86,7 +86,7 @@ export default function RootLayout({
         <body className="custom_scrollbar bg-secondary-low overflow-hidden">
           <div className="max-w-full h-screen grid grid-cols-12 overflow-hidden largeTablet:overflow-y-visible largeTablet:grid-cols-10">
             <div
-              className={`h-screen col-span-2 flex flex-col p-5 bg-primary-high text-white largeTablet:absolute largeTablet:z-10 largeTablet:w-8/12 largeTablet:h-full ${
+              className={`h-screen col-span-2 flex flex-col p-5 bg-primary-high text-white largeTablet:absolute largeTablet:z-10 largeTablet:w-9/12 largeTablet:h-full ${
                 sidebarOpen
                   ? "largeTablet:translate-x-0"
                   : "largeTablet:-translate-x-full"

@@ -194,7 +194,7 @@ export default function DashboardLayout({
             </Button>
           </div>
           <NavigatorTabs
-            className="mt-10 w-min largeTablet:mt-5 smallTablet:w-full"
+            className="mt-10 w-min largeTablet:mt-2 smallTablet:w-full"
             buttonTabs={buttonTabs}
           />
         </div>

@@ -33,25 +33,26 @@ const data = [
 
 export default function Physical() {
   return (
-    <div className="w-full h-full grid grid-cols-11 gap-5 flex-grow p-5 overflow-auto custom_scrollbar">
+    <div className="w-full h-full grid grid-cols-11 gap-5 flex-grow p-5 custom_scrollbar overflow-y-auto largeTablet:gap-3 largeTablet:!overflow-y-visible largeTablet:p-3">
       <Card
-        className="col-span-6 shadow"
+        className="col-span-6 shadow tablet:col-span-11"
         bodyStyle={{
           display: "flex",
           flexDirection: "column",
-          // height: "100%",
+          height: "100%",
           width: "100%",
         }}
       >
-        <div className="flex justify-between w-full">
+        <div className="flex justify-between w-full phone:flex-col">
           <p className="uppercase font-semibold text-lg">Attendance</p>
           <DatePicker
             picker="month"
             size="large"
+            className="phone:my-3"
           />
         </div>
-        <div className="w-full max-w-4xl h-full grid grid-cols-4">
-          <div className="col-span-3">
+        <div className="w-full max-w-4xl min-h-full grid grid-cols-4">
+          <div className="h-full flex items-center col-span-3 smallTablet:col-span-4">
             <ResponsiveContainer
               aspect={1}
               height={300}
@@ -61,8 +62,8 @@ export default function Physical() {
               >
                 <Pie
                   data={data}
-                  cx={"35%"}
-                  cy={150}
+                  cx={"50%"}
+                  cy={135}
                   innerRadius={90}
                   outerRadius={130}
                   fill="#8884d8"
@@ -82,18 +83,18 @@ export default function Physical() {
               </PieChart>
             </ResponsiveContainer>
           </div>
-          <ul className="col-span-1 mt-16">
+          <ul className="col-span-1 my-auto smallTablet:w-full smallTablet:flex smallTablet:gap-3 smallTablet:justify-between smallTablet:-mt-6 smallTablet:pb-8">
             {data.slice(0, -1).map((entry) => (
               <li
                 key={entry.name}
-                className="flex items-center mb-3s"
+                className="flex items-center mb-3"
               >
                 <ColorIndicator
                   className="mr-2"
                   style={{ backgroundColor: entry.color }}
                 />
                 <div className="">
-                  <p className="text-lg">{entry.name}</p>
+                  <p className="text-lg phone:text-base">{entry.name}</p>
                   <p className="text-center text-secondary-high">
                     {entry.value}%
                   </p>
@@ -103,7 +104,7 @@ export default function Physical() {
           </ul>
         </div>
       </Card>
-      <Card className="col-span-5 shadow">
+      <Card className="col-span-5 shadow tablet:hidden">
         <div className="flex justify-between">
           <p className="flex items-center text-lg font-semibold">
             <HeartIcon className="text-bright-red mr-2" /> LEAVES
@@ -128,12 +129,13 @@ export default function Physical() {
           className="mt-5"
           bordered={false}
           size="middle"
+          scroll={{ x: 400 }}
         />
       </Card>
       <Card className="col-span-11 shadow">
-        <div className="flex justify-between w-full">
+        <div className="flex justify-between w-full  smallTablet:flex-col">
           <p className="uppercase font-semibold text-lg">Attendance</p>
-          <div className="flex gap-3">
+          <div className="flex gap-3 smallTablet:my-3">
             <Popover
               placement="bottom"
               content={
@@ -182,6 +184,7 @@ export default function Physical() {
           className="mt-5"
           bordered={false}
           size="middle"
+          scroll={{ x: 500 }}
         />
         <div className="flex justify-end mt-5">
           <Link
@@ -242,7 +245,7 @@ const leaveColumns = [
         status: string;
       },
     ) => (
-      <p>
+      <p className="whitespace-nowrap">
         {format(record.startDate, "MMM dd, yyyy")}&nbsp;-&nbsp;
         {format(record.endDate, "MMM dd, yyyy")}
       </p>
@@ -298,12 +301,21 @@ const atendanceDataSource = [
   },
 ];
 
-const attendanceColumns = [
+const attendanceColumns: {
+  title: string;
+  dataIndex: string;
+  key: string;
+  render?: (value: any) => JSX.Element;
+  fixed?: "left" | "right";
+}[] = [
   {
     title: "Date",
     dataIndex: "date",
     key: "key",
-    render: (value: Date) => <p>{format(value, "MMM dd, yyyy")}</p>,
+    render: (value: Date) => (
+      <p className="whitespace-nowrap">{format(value, "MMM dd, yyyy")}</p>
+    ),
+    fixed: "left",
   },
   {
     title: "Type",

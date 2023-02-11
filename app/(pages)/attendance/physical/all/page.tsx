@@ -7,11 +7,11 @@ import { format, subHours } from "date-fns";
 
 export default function AllPhysical() {
   return (
-    <div className="w-full h-full grid grid-cols-11 gap-5 flex-grow p-5">
+    <div className="w-full h-full grid grid-cols-11 gap-5 flex-grow p-5 largeTablet:p-3">
       <Card className="col-span-11 shadow">
-        <div className="flex justify-between w-full">
+        <div className="flex justify-between w-full smallTablet:flex-col">
           <p className="uppercase font-semibold text-lg">Attendance</p>
-          <div className="flex gap-3">
+          <div className="flex gap-3 smallTablet:my-3">
             <Popover
               placement="bottom"
               content={
@@ -59,8 +59,9 @@ export default function AllPhysical() {
           pagination={{
             position: ["bottomCenter"],
           }}
-          className="mt-5"
+          className="mt-5 smallTablet:mt-0 smallTablet:-mb-5"
           bordered={false}
+          scroll={{ x: 600 }}
         />
       </Card>
     </div>
@@ -150,12 +151,21 @@ const atendanceDataSource = [
   },
 ];
 
-const attendanceColumns = [
+const attendanceColumns: {
+  title: string;
+  dataIndex: string;
+  key: string;
+  render?: (value: any) => JSX.Element;
+  fixed?: "left" | "right";
+}[] = [
   {
     title: "Date",
     dataIndex: "date",
     key: "key",
-    render: (value: Date) => <p>{format(value, "MMM dd, yyyy")}</p>,
+    render: (value: Date) => (
+      <p className="whitespace-nowrap">{format(value, "MMM dd, yyyy")}</p>
+    ),
+    fixed: "left",
   },
   {
     title: "Type",
