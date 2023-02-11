@@ -10,11 +10,11 @@ export const LeaveProgress = (props: {
   const { used, total, color, className, active } = props;
   return (
     <div
-      className={`flex items-center gap-5 max-w-lg mx-auto ${className}`}
+      className={`flex items-center gap-5 max-w-lg mx-auto ${className} largeTablet:gap-3`}
       style={{ color }}
     >
       <div className="text-center">
-        <p className="text-4xl">{used}</p>
+        <p className="text-3xl">{used}</p>
         <p className="text-secondary-high">Used</p>
       </div>
       <Progress
@@ -24,7 +24,7 @@ export const LeaveProgress = (props: {
         strokeColor={color}
       />
       <div className="text-center">
-        <p className="text-4xl">{total - used}</p>
+        <p className="text-3xl">{total - used}</p>
         <p className="text-secondary-high">Left</p>
       </div>
     </div>

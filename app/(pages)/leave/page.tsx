@@ -52,9 +52,9 @@ const data = [
 
 export default function Leave() {
   return (
-    <div className="w-full h-full flex flex-col flex-grow p-5 overflow-auto custom_scrollbar">
-      <div className="flex justify-between mb-5">
-        <p className="text-2xl">Available Leave</p>
+    <div className="w-full h-full flex flex-col flex-grow p-5 overflow-y-auto custom_scrollbar largeTablet:p-3 largeTablet:!overflow-y-visible">
+      <div className="flex justify-between mb-5 largeTablet:mb-3">
+        <p className="text-2xl smallTablet:text-xl">Available Leave</p>
         <Link
           href="/leave/all"
           className="text-active flex items-center"
@@ -62,11 +62,13 @@ export default function Leave() {
           See All <ChevronRightIcon className="ml-2" />
         </Link>
       </div>
-      <div className="w-full grid grid-cols-10 gap-5 mb-5">
-        {data.map((item) => (
+      <div className="w-full grid grid-cols-10 gap-5 mb-5 largeTablet:mb-3 largeTablet:gap-3 tablet:grid-cols-6 smallTablet:grid-cols-4 phone:grid-cols-2">
+        {data.map((item, index) => (
           <Card
             key={item.name}
-            className="col-span-2 shadow h-min"
+            className={`col-span-2 shadow h-full ${
+              index > 1 ? "smallTablet:hidden" : ""
+            }`}
           >
             <LeaveProgress
               used={item.used}
@@ -75,7 +77,9 @@ export default function Leave() {
               active={item.used < item.total}
             />
             <div className="flex flex-col items-center mt-5">
-              <p className={`text-3xl font-semibold ${item.textColorClass}`}>
+              <p
+                className={`text-2xl font-semibold ${item.textColorClass} text-center w-full overflow-hidden whitespace-nowrap text-ellipsis`}
+              >
                 {item.name}
               </p>
               <Button
@@ -90,9 +94,9 @@ export default function Leave() {
         ))}
       </div>
       <Card className="col-span-10 shadow">
-        <div className="flex justify-between w-full">
+        <div className="flex justify-between w-full tablet:flex-col">
           <p className="uppercase font-semibold text-lg">Leave Log</p>
-          <div className="flex gap-3">
+          <div className="flex gap-3 tablet:my-3">
             <Popover
               placement="bottom"
               content={
@@ -143,6 +147,7 @@ export default function Leave() {
           className="mt-5"
           bordered={false}
           size="large"
+          scroll={{ x: 454 }}
         />
       </Card>
     </div>
@@ -208,7 +213,14 @@ const leaveDataSource = [
   },
 ];
 
-const leaveColumns = [
+const leaveColumns: {
+  title: string;
+  dataIndex: string;
+  key: string;
+  render?: (value: any, record: any) => JSX.Element;
+  fixed?: "left" | "right";
+  width?: number;
+}[] = [
   {
     title: "Leave Date",
     dataIndex: "startDate",
@@ -223,8 +235,8 @@ const leaveColumns = [
         status: string;
       },
     ) => (
-      <p>
-        {format(record.startDate, "MMM dd, yyyy")}&nbsp;-&nbsp;
+      <p className="">
+        {format(record.startDate, "MMM dd, yyyy")} -{" "}
         {format(record.endDate, "MMM dd, yyyy")}
       </p>
     ),

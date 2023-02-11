@@ -101,7 +101,7 @@ const data = [
 export default function LeaveAll() {
   const router = useRouter();
   return (
-    <div className="w-full h-full flex flex-col flex-grow p-5">
+    <div className="w-full h-full flex flex-col flex-grow p-5 largeTablet:p-3">
       <div className="flex items-center mb-5">
         <Button
           className="bg-white mr-2 flex items-center"
@@ -109,9 +109,9 @@ export default function LeaveAll() {
           size="large"
           onClick={() => router.back()}
         />
-        <p className="text-2xl">Available Leaves</p>
+        <p className="text-2xl smallTablet:text-xl">Available Leaves</p>
       </div>
-      <div className="w-full grid grid-cols-5 gap-5 mb-5">
+      <div className="w-full grid grid-cols-5 gap-5 mb-5 largeTablet:gap-3 largeTablet:grid-cols-4 tablet:grid-cols-3 smallTablet:grid-cols-2 phone:grid-cols-1">
         {data.map((item) => (
           <Card
             key={item.name}
@@ -125,7 +125,7 @@ export default function LeaveAll() {
             />
             <div className="flex flex-col items-center mt-5">
               <p
-                className={`text-xl font-semibold text-center ${item.textColorClass}`}
+                className={`text-xl font-semibold text-center ${item.textColorClass} text-center w-full overflow-hidden whitespace-nowrap text-ellipsis`}
               >
                 {item.name}
               </p>
