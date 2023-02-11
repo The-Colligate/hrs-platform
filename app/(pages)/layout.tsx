@@ -84,7 +84,7 @@ export default function RootLayout({
       */}
         <head />
         <body className="custom_scrollbar bg-secondary-low overflow-hidden">
-          <div className="max-w-full h-screen grid grid-cols-12 overflow-hidden largeTablet:overflow-y-visible largeTablet:grid-cols-10">
+          <div className="max-w-full h-screen grid grid-cols-12 overflow-hidden largeTablet:h-full largeTablet:overflow-y-visible largeTablet:grid-cols-10">
             <div
               className={`h-screen col-span-2 flex flex-col p-5 bg-primary-high text-white largeTablet:absolute largeTablet:z-10 largeTablet:w-9/12 largeTablet:h-full ${
                 sidebarOpen
