@@ -2,6 +2,7 @@
 
 import {
   ChevronDownIcon,
+  ChevronLeftIcon,
   EmojiIcon,
   FilterIcon,
   MicrophoneIcon,
@@ -14,37 +15,27 @@ import {
   VideoCameraIcon,
 } from "@/icons";
 import { Avatar, Button, Collapse, Input } from "antd";
-import { format, isToday, isYesterday, subDays } from "date-fns";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { subDays } from "date-fns";
+import { useState } from "react";
 import RoomListItem from "./RoomListItem";
 import SingleMessage from "./SingleMessage";
 
 const { Panel } = Collapse;
 
 export default function Messages() {
-  const router = useRouter();
-  const query = useSearchParams();
-
-  useEffect(() => {
-    console.log(query.get("room"));
-  }, [query]);
-
-  const renderDateLine = (date: Date) => {
-    if (isToday(date)) return "Today";
-    if (isYesterday(date)) return "Yesterday";
-    return format(date, "dd MMMM yyyy");
-  };
+  const [selectedRoom, setSelectRoom] = useState<number | null>(null);
 
   const onRoomSelected = (roomId: number) => {
-    router.push(
-      `/messages?${new URLSearchParams({ room: String(roomId) }).toString()}`,
-    );
+    setSelectRoom(roomId);
   };
 
   return (
     <div className="grid grid-cols-10 w-full h-full overflow-hidden">
-      <div className="h-full col-span-2 flex flex-col bg-white p-2 shadow-lg">
+      <div
+        className={`h-full col-span-2 flex flex-col bg-white p-2 shadow-lg overflow-y-auto custom_scrollbar largeTablet:col-span-3 tablet:col-span-10 ${
+          selectedRoom ? "tablet:hidden" : ""
+        }`}
+      >
         <div className="flex items-center mb-5">
           <Avatar
             className="m-2"
@@ -95,7 +86,7 @@ export default function Messages() {
                     <RoomListItem
                       key={room.id}
                       room={room}
-                      active={room.id === Number(query.get("room"))}
+                      active={room.id === selectedRoom}
                       onClick={onRoomSelected}
                     />
                   );
@@ -112,7 +103,7 @@ export default function Messages() {
                     <RoomListItem
                       key={room.id}
                       room={room}
-                      active={room.id === Number(query.get("room"))}
+                      active={room.id === selectedRoom}
                       onClick={onRoomSelected}
                     />
                   );
@@ -122,44 +113,53 @@ export default function Messages() {
           </Collapse>
         </div>
       </div>
-      <div className="col-span-8 h-full flex flex-col flex-grow overflow-auto custom_scrollbar px-3 pt-0">
-        <div className="flex justify-between items-center p-4 rounded-lg bg-white">
-          <div className="flex">
-            <Avatar
-              size={40}
-              className="min-w-[40px] min-h-[40px]"
+      <div
+        className={`col-span-8 h-full flex flex-col flex-grow overflow-hidden px-3 pt-0 largeTablet:col-span-7 tablet:col-span-10 ${
+          selectedRoom ? "" : "tablet:hidden"
+        } phone:px-2`}
+      >
+        <div className="flex justify-between items-center p-4 rounded-lg bg-white largeTablet:p-2">
+          {selectedRoom && (
+            <Button
+              type="text"
+              className="items-center hidden tablet:flex"
+              icon={<ChevronLeftIcon />}
+              onClick={() => setSelectRoom(null)}
             />
-            <div className="ml-3">
-              <p className="font-semibold">All Staff (89)</p>
-              <p className="text-xs text-secondary-high font-light truncate">
+          )}
+          <Avatar
+            size={40}
+            className="min-w-[40px] min-h-[40px]"
+          />
+          <div className="flex-grow grid grid-cols-12">
+            <div className="ml-3 flex-grow col-span-8 phone:col-span-7 smallPhone:col-span-5">
+              <p className="font-semibold w-full overflow-hidden truncate">
+                All Staff (89)
+              </p>
+              <p className="text-xs text-secondary-high font-light w-full overflow-hidden truncate">
                 {chatRooms.publicRooms[0].members
                   .map((member, i, list) => member.name)
                   .join(", ")}
               </p>
             </div>
-          </div>
-          <div className="self-end ml-3 flex gap-3">
-            <Button
-              className="bg-primary-low text-primary-high flex items-center justify-center"
-              size="large"
-              shape="circle"
-              icon={<PhoneIcon className="opacity-20" />}
-            />
-            <Button
-              className="bg-primary-low text-primary-high flex items-center justify-center"
-              size="large"
-              shape="circle"
-              icon={<VideoCameraIcon className="opacity-20" />}
-            />
-            <Button
-              className="bg-primary-low text-primary-high flex items-center justify-center"
-              size="large"
-              shape="circle"
-              icon={<OverflowMenuVerticalIcon className="opacity-20" />}
-            />
+            <div className="self-end ml-auto flex justify-end gap-3 col-span-4 phone:col-span-5 smallPhone:col-span-7">
+              <div className="h-min p-2.5 bg-primary-low text-primary-high rounded-full smallTablet:p-1.5 smallPhone:p-1">
+                <PhoneIcon className="opacity-20" />
+              </div>
+              <div className="h-min p-2.5 bg-primary-low text-primary-high rounded-full smallTablet:p-1.5 smallPhone:p-1">
+                <VideoCameraIcon className="opacity-20" />
+              </div>
+              <div className="h-min p-2.5 bg-primary-low text-primary-high rounded-full smallTablet:p-1.5 smallPhone:p-1">
+                <OverflowMenuVerticalIcon
+                  height={25}
+                  width={25}
+                  className="opacity-20"
+                />
+              </div>
+            </div>
           </div>
         </div>
-        <div className="flex flex-col flex-grow mt-5 overflow-auto custom_scrollbar px-2">
+        <div className="flex flex-col flex-grow mt-5 overflow-y-auto custom_scrollbar px-2 largeTablet:text-sm phone:px-1">
           {sampleTexts.map((message, i, list) => (
             <SingleMessage
               message={message}
@@ -172,13 +172,13 @@ export default function Messages() {
         <div className="py-3 flex items-center gap-3">
           <Input
             placeholder="Type your message"
-            className="rounded-full p-2"
+            className="rounded-full p-2 phone:p-1"
             prefix={
               <Button
                 shape="circle"
                 type="text"
                 className="flex justify-center items-center opacity-40"
-                icon={<MicrophoneIcon />}
+                icon={<MicrophoneIcon width={25} />}
               />
             }
             suffix={
@@ -187,13 +187,13 @@ export default function Messages() {
                   shape="circle"
                   type="text"
                   className="flex justify-center items-center opacity-40"
-                  icon={<EmojiIcon />}
+                  icon={<EmojiIcon width={25} />}
                 />
                 <Button
                   shape="circle"
                   type="text"
                   className="flex justify-center items-center opacity-40"
-                  icon={<PaperclipIcon />}
+                  icon={<PaperclipIcon width={25} />}
                 />
               </>
             }
@@ -201,8 +201,14 @@ export default function Messages() {
           <Button
             shape="circle"
             size="large"
-            className="bg-primary-low"
-            icon={<SendAltFilledIcon className="text-primary-high" />}
+            className="bg-primary-low flex items-center justify-center"
+            icon={
+              <SendAltFilledIcon
+                width={25}
+                height={25}
+                className="text-primary-high pr-0.5"
+              />
+            }
           />
         </div>
       </div>

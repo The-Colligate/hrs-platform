@@ -31,22 +31,24 @@ export default function SingleMessage({
       key={message.id}
     >
       {showDateLine && (
-        <p className="w-full flex justify-between items-center gap-5 py-5">
+        <div className="w-full flex justify-between items-center gap-5 py-5">
           <hr className="w-full h-1" />
           <span className="whitespace-nowrap">
             {renderDateLine(message.time)}
           </span>
           <hr className="w-full h-1" />
-        </p>
+        </div>
       )}
       <div
-        className={`w-full flex flex-col ${mine ? "items-end" : "items-start"}`}
+        className={`w-full flex flex-col ${
+          mine ? "items-end pl-8" : "items-start pr-8"
+        }`}
       >
         <div className="flex">
           {!mine && (
             <Avatar
-              size={40}
-              className="mr-2"
+              size={35}
+              className="mr-2 min-w-[35px]"
             />
           )}
           <div>
@@ -55,20 +57,16 @@ export default function SingleMessage({
                 mine
                   ? "rounded-l-lg rounded-tr-lg"
                   : "rounded-r-lg rounded-tl-lg"
-              }`}
-              dangerouslySetInnerHTML={{
-                __html: message.text,
-              }}
-            ></div>
+              } phone:p-2`}
+            >
+              {message.text}
+            </div>
             <p
               className={`text-xs text-secondary-high mr-2 ${
                 mine ? "text-right" : ""
               }`}
             >
-              {message.time.toLocaleTimeString("en-US", {
-                hour: "numeric",
-                minute: "numeric",
-              })}
+              {format(message.time, "HH:mm aaa")}
             </p>
           </div>
         </div>

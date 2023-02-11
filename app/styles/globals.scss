@@ -13,19 +13,19 @@ body {
 }
 
 .custom_scrollbar::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 /* Track */
 .custom_scrollbar::-webkit-scrollbar-track {
-  @apply bg-primary-low;
-  border-radius: 10px;
+  @apply bg-primary-low phone:bg-none;
+  border-radius: 6px;
 }
 
 /* Handle */
 .custom_scrollbar::-webkit-scrollbar-thumb {
   @apply bg-primary-high;
-  border-radius: 10px;
+  border-radius: 6px;
 }
 
 .shadow_hover {
