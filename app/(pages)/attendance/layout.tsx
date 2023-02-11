@@ -19,7 +19,7 @@ export default function AttendanceLayout({
   ];
 
   return (
-    <div className="w-full h-full col-span-10 flex flex-col overflow-hidden largeTablet:overflow-y-visible">
+    <div className="w-full h-full col-span-10 flex flex-col overflow-hidden pb-3 largeTablet:overflow-y-visible">
       <div className="p-5 pt-0 largeTablet:p-3">
         <NavigatorTabs
           className="mt-10 largeTablet:mt-0"

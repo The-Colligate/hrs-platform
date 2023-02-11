@@ -39,7 +39,7 @@ export default function DashboardLayout({
   };
 
   return (
-    <div className="h-full w-full grid grid-cols-10 overflow-hidden largeTablet:overflow-y-visible largeTablet:grid-cols-8">
+    <div className="h-full w-full grid grid-cols-10 overflow-hidden pb-3 largeTablet:overflow-y-visible largeTablet:grid-cols-8">
       <div className="h-full col-span-2 flex flex-col p-5 bg-white pt-10 shadow-lg largeTablet:hidden">
         <p className="text-center text-primary-high mb-10">Welcome, Wale</p>
         <Avatar
