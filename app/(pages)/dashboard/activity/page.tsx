@@ -65,75 +65,87 @@ export default function Activity() {
     },
   ];
   return (
-    <div className="max-w-4xl h-full flex flex-col flex-grow overflow-auto custom_scrollbar p-5 pt-0">
+    <div className="max-w-4xl h-full flex flex-col flex-grow overflow-auto custom_scrollbar p-5 pt-0 largeTablet:p-0 largeTablet:overflow-visible">
       <p className="mb-2 font-semibold">Today</p>
       {announcements.map((announcement) => {
         return (
           <Card
             key={announcement.id}
             title={
-              <p className="flex">
-                <VolumeHighIcon className="text-primary-high mr-2" /> Broadcast
-                Created by {announcement.createdBy}
+              <p className="flex items-center text-ellipsis">
+                <VolumeHighIcon className="text-primary-high mr-2 min-w-[1.25rem] h-5" />{" "}
+                Broadcast Created by {announcement.createdBy}
               </p>
             }
             // extra={<a href="#">More</a>}
-            className="w-full mb-3 shadow_hover"
+            className="max-w-full mb-3 shadow_hover"
           >
             <Meta
-              avatar={<Avatar src="/boss.png" />}
               title={
-                <div className="flex justify-between items-start">
-                  <div>
-                    <p>{announcement.title}</p>
-                    <p className="text-xs font-light">
-                      {format(announcement.time, "hh:mm aa")}
-                    </p>
-                  </div>
-                  <div className="flex items-center">
-                    <div
-                      className={`${resolvePriorityColor(
-                        announcement.priority as PriorityStatus,
-                      )} rounded w-4 h-4 mr-2`}
+                <div className="grid grid-cols-12">
+                  <div className="col-span-1 smallTablet:hidden">
+                    <Avatar
+                      src="/boss.png"
+                      size={40}
                     />
-                    <p className="text-sm font-light">
-                      {announcement.priority}
-                    </p>
+                  </div>
+                  <div className="flex-grow flex justify-between items-start col-span-11 smallTablet:grid-cols-12">
+                    <div>
+                      <p>{announcement.title}</p>
+                      <p className="text-xs font-light">
+                        {format(announcement.time, "hh:mm aa")}
+                      </p>
+                    </div>
+                    <div className="flex items-center">
+                      <div
+                        className={`${resolvePriorityColor(
+                          announcement.priority as PriorityStatus,
+                        )} rounded w-4 h-4 mr-2`}
+                      />
+                      <p className="text-sm font-light">
+                        {announcement.priority}
+                      </p>
+                    </div>
                   </div>
                 </div>
               }
               description={
-                <div className="text-black">
-                  <div
-                    className="html_content"
-                    dangerouslySetInnerHTML={{
-                      __html: announcement.description,
-                    }}
-                  ></div>
-                  <div className="flex flex-wrap gap-5">
-                    {announcement.attachments &&
-                      announcement.attachments.map((attachment) => {
-                        const { icon } = fileToIcon(attachment.name);
-                        return (
-                          <div
-                            className="flex items-center rounded-lg border divide-x cursor-pointer hover:border-primary-high"
-                            key={attachment.id}
-                          >
-                            <div className="p-3">
-                              <Image
-                                alt={icon}
-                                src={icon}
-                                width={30}
-                                height={30}
-                              />
+                <div className="grid grid-cols-12">
+                  <div className="col-span-1 smallTablet:hidden"></div>
+                  <div className="text-black col-span-11 smallTablet:grid-cols-10">
+                    <div
+                      className="html_content"
+                      dangerouslySetInnerHTML={{
+                        __html: announcement.description,
+                      }}
+                    ></div>
+                    <div className="flex flex-wrap gap-5">
+                      {announcement.attachments &&
+                        announcement.attachments.map((attachment) => {
+                          const { icon } = fileToIcon(attachment.name);
+                          return (
+                            <div
+                              className="flex items-center rounded-lg border divide-x cursor-pointer hover:border-primary-high"
+                              key={attachment.id}
+                            >
+                              <div className="p-3 tablet:p-2 phone:p-1">
+                                <Image
+                                  alt={icon}
+                                  src={icon}
+                                  width={25}
+                                  height={25}
+                                />
+                              </div>
+                              <div className="p-3 tablet:p-2 phone:p-1">
+                                <p className="font-semibold">
+                                  {attachment.name}
+                                </p>
+                                <p className="text-sm">{attachment.size}</p>
+                              </div>
                             </div>
-                            <div className="p-3">
-                              <p className="font-semibold">{attachment.name}</p>
-                              <p className="text-sm">{attachment.size}</p>
-                            </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        })}
+                    </div>
                   </div>
                 </div>
               }

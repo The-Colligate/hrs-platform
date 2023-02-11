@@ -46,7 +46,7 @@ export const NavigatorTabs = (props: NavigatorTabsProps) => {
           onClick={() => router.back()}
         />
       )}
-      <div className="flex items-center bg-white w-min rounded-lg">
+      <div className="flex flex-grow justify-between items-center bg-white w-min rounded-lg">
         {buttonTabs.map((tab) => {
           const active = path?.startsWith(tab.href);
 
@@ -54,11 +54,12 @@ export const NavigatorTabs = (props: NavigatorTabsProps) => {
             <Link
               key={tab.name}
               href={tab.href}
+              className="w-full"
             >
               <Button
                 size="large"
                 type={active ? "default" : "text"}
-                className={`${
+                className={`w-full ${
                   active
                     ? "bg-active text-white shadow hover:!text-white"
                     : "hover:text-black"

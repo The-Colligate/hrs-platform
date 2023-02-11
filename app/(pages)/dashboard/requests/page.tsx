@@ -34,8 +34,8 @@ export default function Requests() {
     },
   ];
   return (
-    <div className="w-full h-full flex flex-col flex-grow overflow-auto custom_scrollbar p-5 pt-0">
-      <div className="flex justify-end mb-5">
+    <div className="w-full h-full flex flex-col flex-grow overflow-auto custom_scrollbar p-5 pt-0 largeTablet:p-0">
+      <div className="flex justify-end mb-5 smallTablet:mb-3">
         <Button
           className="flex bg-white text-primary-high"
           size="large"
@@ -56,10 +56,11 @@ export default function Requests() {
                 <div className="flex items-center">
                   <Avatar
                     src="/boss.png"
-                    className="mr-4"
+                    size={40}
+                    className="mr-3 min-w-[40px] phone:hidden"
                   />
                   <div>
-                    <p>{request.title}</p>
+                    <p className="text-ellipsis">{request.title}</p>
                     <p className="text-xs font-light">
                       {format(request.time, "hh:mm aa")}
                     </p>
